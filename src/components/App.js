@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 
 const App = ( { 
 	player1, 
@@ -8,7 +8,8 @@ const App = ( {
 	handlePlayer2,
 	handleReset,
 	serving,
-	winner
+	winner,
+	history
 } ) => (
 
     <React.Fragment>
@@ -65,6 +66,33 @@ const App = ( {
 			className="btn btn-danger"
 			onClick={ handleReset }
 		>Reset</button>
+			<Table striped bordered hover>
+				<thead>
+					<tr>
+						<th colspan="2">Player 1</th>
+						<th colspan="2">Player 2</th>
+					</tr>
+					<tr>
+						<th>Score</th>
+						<th>Won</th>
+						<th>Score</th>
+						<th>Won</th>
+					</tr>
+				</thead>
+				<tbody>
+					{ history.map((match, index) => (
+						<tr
+							key={ index }
+						>
+							<td>{ match.player_1.score }</td>
+							<td>{ match.player_1.won ? "Won" : "Lost" }</td>
+							<td>{ match.player_2.score }</td>
+							<td>{ match.player_2.won ? "Won" : "Lost" }</td>
+						</tr>
+					)) }
+				</tbody>
+			</Table>
+
     </React.Fragment>
 );
 

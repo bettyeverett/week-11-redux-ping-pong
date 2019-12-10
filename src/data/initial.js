@@ -4,6 +4,7 @@ const initial = {
     player2: 0,
     serving: 1,
     winner: 0,
+    history: [],
 
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+// import { Provider } from "react-redux";
 import App from './components/App';
 
 import store from "./data/store";
@@ -12,15 +13,19 @@ const render = () => {
     let state = store.getState();
     // pass in state.value as a value prop
     ReactDOM.render(
-        <App 
-            player1={ state.player1 } 
-            player2={ state.player2 }
-            serving={ state.serving }
-            winner={ state.winner }
-            handlePlayer1={ () => store.dispatch({ type: "player1" }) }
-            handlePlayer2={ () => store.dispatch({ type: "player2" }) }
-            handleReset={ () => store.dispatch({ type: "reset" }) }
-        />, document.getElementById("root")
+        // <Provider>
+            <App 
+                player1={ state.player1 } 
+                player2={ state.player2 }
+                serving={ state.serving }
+                winner={ state.winner }
+                history={ state.history }
+                handlePlayer1={ () => store.dispatch({ type: "player1" }) }
+                handlePlayer2={ () => store.dispatch({ type: "player2" }) }
+                handleReset={ () => store.dispatch({ type: "reset" }) }
+            />,
+        // </Provider>, 
+        document.getElementById("root")
     ); 
 
 };
