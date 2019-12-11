@@ -1,23 +1,20 @@
 import React from "react";
 
-import Player1 from "./player/Player1";
-import Player2 from "./player/Player2";
-import Header from "./header/Header";
-import Winner from "./winner";
-import Reset from "./reset";
-import History from "./history";
+import Player1 from "./Player/Player1";
+import Player2 from "./Player/Player2";
+import Header from "./Header";
+import Winner from "./Winner";
+import Reset from "./Reset";
+import History from "./History";
 
-const App = ( { 
-	handlePlayer1,
-	handlePlayer2,
-} ) => (
+const App = () => (
 
     <React.Fragment>
         
         <Header />
 
-		<Player1 handlePlayer={ handlePlayer1 }/>
-		<Player2 handlePlayer={ handlePlayer2 }/>
+		<Player1 />
+		<Player2 />
 
 		<Winner />
 
