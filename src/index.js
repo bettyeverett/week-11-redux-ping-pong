@@ -13,7 +13,6 @@ ReactDOM.render(
         <App 
             handlePlayer1={ () => store.dispatch({ type: "player1" }) }
             handlePlayer2={ () => store.dispatch({ type: "player2" }) }
-            handleReset={ () => store.dispatch({ type: "reset" }) }
         />
     </Provider>, 
     document.getElementById("root")
