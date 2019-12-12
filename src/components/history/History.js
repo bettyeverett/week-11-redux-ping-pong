@@ -2,19 +2,14 @@ import React from "react";
 
 import { Table } from "react-bootstrap";
 
-const History = ({ history }) => (
+const History = ({ history, player1Name, player2Name, }) => (
    
    <Table striped bordered hover>
         <thead>
             <tr>
-                <th colspan="2">Player 1</th>
-                <th colspan="2">Player 2</th>
-            </tr>
-            <tr>
-                <th>Score</th>
                 <th>Won</th>
+                <th>Lost</th>
                 <th>Score</th>
-                <th>Won</th>
             </tr>
         </thead>
         <tbody>
@@ -22,10 +17,13 @@ const History = ({ history }) => (
                 <tr
                     key={ index }
                 >
-                    <td>{ match.player_1.score }</td>
-                    <td>{ match.player_1.won ? "Won" : "Lost" }</td>
-                    <td>{ match.player_2.score }</td>
-                    <td>{ match.player_2.won ? "Won" : "Lost" }</td>
+                    <td>{ match.player_1.won ? player1Name : player2Name }</td>
+                    <td>{ !match.player_1.won ? player1Name : player2Name }</td>
+                    <td>{ match.player_1.won ? 
+                        `${match.player_1.score} - ${ match.player_2.score }` 
+                    : 
+                        `${match.player_2.score} - ${ match.player_1.score }`
+                    }</td>
                 </tr>
             )) }
         </tbody>

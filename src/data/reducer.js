@@ -2,15 +2,31 @@ import initial from "./initial";
 
 let total = (state) => (state.player1 + state.player2); // Keeping a total of the two scores added together
 
-let game = (state) => (state.player1 >= 21 || state.player2 >= 21); // Tracking if either of the scores hit 21
+let game = (state) => (state.player1 >= state.winningScore || state.player2 >= state.winningScore); // Tracking if either of the scores hit 21
 
 let twoPointLead = (state) => (Math.abs(state.player1 - state.player2) >= 2); // Calculating the difference between the two player's scores
 
 let win = state => (state.player1 > state.player2 ? 1 : 2);
 
+const submitSettings = (state, { 
+    player1Name, 
+    player2Name, 
+    winningScore, 
+    alternateEvery,
+    settings
+}) => ({ ...state, 
+    player1Name: player1Name,
+    player2Name: player2Name,
+    winningScore: winningScore,
+    alternateEvery: alternateEvery,
+    settings: settings,
+});
+
 const player1 = (state) => ({ ...state, player1: state.player1 + 1 });
+
 const player2 = (state) => ({ ...state, player2: state.player2 + 1 });
-const serving = (state) => ({ ...state, serving: !game(state) ? (Math.floor(total(state) / 5) % 2) + 1 : (Math.floor(total(state) / 2) % 2) + 1 });
+
+const serving = (state) => ({ ...state, serving: !game(state) ? (Math.floor(total(state) / state.alternateEvery) % 2) + 1 : (Math.floor(total(state) / 2) % 2) + 1 });
 
 const winner = (state) => ({ ...state, winner: game(state) && twoPointLead(state) ? win(state) : 0 });
 
@@ -41,6 +57,7 @@ const reducer = (state, action) => {
         case "player1": return history(winner(serving(player1(state))));
         case "player2": return history(winner(serving(player2(state))));
         case "reset": return {...initial, history: state.history};
+        case "submitSettings": return submitSettings(state, action);
         default: return state;
 
     } 

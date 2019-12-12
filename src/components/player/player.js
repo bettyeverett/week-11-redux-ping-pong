@@ -3,6 +3,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 
 const Player = ({
+    playerName,
     handlePlayer,
     serving,
     winner,
@@ -13,7 +14,7 @@ const Player = ({
     <div className="row mb-4">
         <div className="col-md-6 mt-4">
             <div className={ ( serving ? "bg-dark text-white card text-center" : "card text-center") }>
-                <h5 className="card-header">Player 1</h5>
+                <h5 className="card-header">{ playerName }</h5>
                 <div className="card-body">
                     <p className="card-text display-1">{ score }</p>
                 </div>

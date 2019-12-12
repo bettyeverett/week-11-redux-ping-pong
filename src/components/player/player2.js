@@ -12,6 +12,7 @@ import { player2 } from "../../data/actions";
 // to any other props being passed in
 const mapStateToProps = state => {
     return {
+        playerName: state.player2Name,
         serving: state.serving === 2,
         score: state.player2,
         winner: state.winner,

@@ -5,6 +5,8 @@ import History from "./History";
 const mapStateToProps = state => {
     return {
         history: state.history,
+        player1Name: state.player1Name,
+        player2Name: state.player2Name,
     };
 };
 
